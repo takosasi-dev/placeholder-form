@@ -176,4 +176,11 @@ describe("data.json と対象(§9.2・D-15)", () => {
 		expect(isTarget("仕様/Foo/a.md", s)).toBe(false);
 		expect(isTarget("仕様/FooBar/a.md", s)).toBe(true);
 	});
+
+	it("既定は未設定(specFolders が空)。どのノートも対象にしない。保存してある値はそのまま", () => {
+		expect(DEFAULTS.specFolders).toEqual([]);
+		expect(isTarget("a.md", DEFAULTS)).toBe(false);
+		expect(isTarget("仕様/a.md", DEFAULTS)).toBe(false);
+		expect(normalizeData({ schemaVersion: 1, settings: { specFolders: ["仕様"] } }, norm).data.settings.specFolders).toEqual(["仕様"]);
+	});
 });

@@ -116,7 +116,7 @@ export default class PlaceholderFormPlugin extends Plugin {
 		if (path === null) return this.renderViews();
 		const token = ++this.reloadSeq;
 		const file = fileAt(this.app, path);
-		if (!file) {
+		if (!file || !this.store.settings.specFolders.length) {    // 未設定に戻したら、前の対象も外す(書かせない)
 			this.form = emptyForm();
 			return this.renderViews();
 		}

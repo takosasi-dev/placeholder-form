@@ -1,6 +1,6 @@
 {
 	"name": "placeholder-form",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Fill the placeholders in section 8 of a spec note with a form. Confirms, keeps a backup, and can undo.",
 	"main": "main.js",
 	"type": "module",

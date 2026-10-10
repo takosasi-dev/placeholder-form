@@ -19,7 +19,7 @@ export class PlaceholderFormSettingTab extends PluginSettingTab {
 	getSettingDefinitions(): SettingDefinitionItem[] {
 		return [
 			{ type: "group", items: [
-				{ name: "仕様書のフォルダ", desc: "1行に1つ。vault からのパス。この下の md で §8 がある物を対象にする", control: { type: "textarea", key: "specFolders", rows: 3 } },
+				{ name: "仕様書のフォルダ", desc: "1行に1つ。vault からのパス。この下の md で §8 がある物を対象にする。未設定(空)だとどのノートも対象にならない。例: Specs や 仕様書", control: { type: "textarea", key: "specFolders", rows: 3 } },
 				{ name: "除くパス", desc: "1行に1つ。フォルダかファイル。Foo は Foo/ の下だけに効く", control: { type: "textarea", key: "excludePaths", rows: 3 } },
 				{ name: "欄にしない言及", desc: "1行に1つ。インラインコードの中でこの中身の欄は欄にしない。BlockerBoard と同じ値にする", control: { type: "textarea", key: "mentionTexts", rows: 2 } },
 				{ name: "表のセルの改行", desc: "表のセルに入れる値の改行をこの文字にする(例: <br> か  / )", control: { type: "text", key: "tableLineBreak" } },

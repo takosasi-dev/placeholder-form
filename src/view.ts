@@ -37,7 +37,8 @@ export class FormView extends ItemView {
 		root.addClass("pf-panel");
 		this.submitBtn = null;
 		if (f.path === null) {
-			root.createDiv({ cls: "pf-note", text: "仕様書を開いて" });
+			root.createDiv({ cls: "pf-note", text: p.store.settings.specFolders.length ? "仕様書を開いて"
+				: "仕様書のフォルダが未設定です。設定 → Placeholder Form で指定してください" });
 			return;
 		}
 		root.createDiv({ cls: "pf-path", text: `対象: ${f.path}` });

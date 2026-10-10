@@ -1,4 +1,4 @@
-// 設定と data.json の型・既定値(DEFAULTS)・読み込みの補い・対象の判定(§9.2・D-15)。私の vault 固有の文字はここにだけ書く(INV-13)。
+// 設定と data.json の型・既定値(DEFAULTS)・読み込みの補い・対象の判定(§9.2・D-15)。既定の文字はここにだけ書く(INV-13)。specFolders の既定は空 = 未設定。
 // obsidian を import しない(テストで読む)。パスの正規化は呼び手が normalizePath を渡す。設定タブは settings-tab.ts。
 // 壊れた data.json・違う schemaVersion は既定値で動かし、problem を返す(呼び手は上書きしない)。
 import { isRecord, type HistoryRecord } from "./fill/history";
@@ -22,7 +22,7 @@ export interface PluginData {
 }
 
 export const DEFAULTS: Settings = {
-	specFolders: ["仕様書MDファイル"],
+	specFolders: [],                  // 未設定(空のあいだは対象が無く、何も書かない)
 	excludePaths: [],
 	mentionTexts: ["...", "…"],     // BlockerBoard と同じ。変えるときは両方を変える
 	tableLineBreak: "<br>",           // 仮決め(§8.5 は未記入。AC-14 が改行に見えることを求めている)

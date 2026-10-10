@@ -20,7 +20,7 @@
 
 次の形で書いた仕様書ノートを前提にしています。
 
-- 対象は「仕様書のフォルダ」(既定は `仕様書MDファイル`)の下の md で、番号 8 で始まる `##` の見出し(`## 8. …`。以下 §8)がある物
+- 対象は、設定の「仕様書のフォルダ」に入れたフォルダ(既定は空 = 未設定)の下の md で、番号 8 で始まる `##` の見出し(`## 8. …`。以下 §8)がある物
 - 空欄は二重の波括弧で `{{名前}}` と書く(1 行の中で開きと閉じが揃っている物)。§8 の中の `### 8.1 …`(`### 8-1. …` でも同じ)が小節になる
 
 ````markdown
@@ -59,7 +59,7 @@
 - インラインコードの中の `` `{{...}}` `` と `` `{{…}}` ``(欄の書き方を説明する文)は、欄にしません。
 - §8 の外の `{{…}}`(上の例の `{{TITLE}}`)は数だけ出し、書き換えません。
 
-既定のフォルダ名は作者の vault の物です。設定の「仕様書のフォルダ」を自分の vault に合わせて書き換えてください。節の番号 8 と空欄の形 `{{…}}` は固定で、変えられません。
+フォルダは既定では決まっていません(未設定)。入れたら、まず設定の「仕様書のフォルダ」を指定してください(下の「入れたら最初に設定する項目」)。節の番号 8 と空欄の形 `{{…}}` は固定で、変えられません。
 
 ## 入れ方
 
@@ -73,9 +73,15 @@
 
 [Releases](https://github.com/takosasi-dev/placeholder-form/releases) から `main.js`・`manifest.json`・`styles.css` を落とし、vault の `.obsidian/plugins/placeholder-form/` に置いて、コミュニティプラグインの一覧で有効にします。
 
+### 入れたら最初に設定する項目
+
+設定 → Placeholder Form で、**仕様書のフォルダ**を入れます。仕様書を置いているフォルダを、vault からのパスで 1 行に 1 つ(例: `Specs` や `仕様書`)。既定は空(未設定)です。
+
+未設定のあいだは、どのノートも対象にならず、読みも書きもしません。フォームには `仕様書のフォルダが未設定です。設定 → Placeholder Form で指定してください` と出ます(起動しただけでは知らせません)。前に書き込んだ記録があるときは、その取り消しと履歴だけは未設定でも使えます。
+
 ## 使い方
 
-1. 仕様書を開き、コマンド「Placeholder Form: 欄の入力フォームを開く」でフォームを出す。
+1. 「仕様書のフォルダ」の下の仕様書を開き、コマンド「Placeholder Form: 欄の入力フォームを開く」でフォームを出す。
 2. 埋めたい欄に値を打つか貼る。入れない欄は空のままにする。
 3. 「確定(入力 N 件)」を押し、確認の窓「欄を書き換える」で前と後の行を見て「書き換える」を押す。やめるなら「やめる」を押すか、窓を閉じる。
 4. `N か所を埋めた` と出る。間違えたら「Placeholder Form: 直前の書き込みを取り消す」。
@@ -92,6 +98,7 @@
 
 ### 画面の見方
 
+- 対象がまだ無いとき: `仕様書を開いて`。「仕様書のフォルダ」が未設定のあいだは `仕様書のフォルダが未設定です。設定 → Placeholder Form で指定してください`
 - `対象: <仕様書のパス>`。ほかのノートに移っても前の仕様書のまま残り、「対象外のファイル。前の仕様書のまま」と出ます(値をほかのノートからコピーして戻れます)。
 - 欄ごとに、名前(押すとその行へ移る)・種類と行番号・文脈(表なら「行の 1 列目 / 列の見出し」)・入力欄。同じ名前の欄が複数あると `名前 #2` のように番号が付き、「同じ名前の欄にも入れる(ほか N か所)」のチェックが出ます。名前が英大文字・数字・`_` だけでない欄には「名前の形でない」の印が付きます(埋めることはできます)。
 - 入れられない値には、入力欄の下に理由が出ます。例: `フェンスの行は入れられない(コードブロックが閉じる)`・`インラインコードの欄なので、1行だけ`・`二重の開き波括弧は入れられない(欄として数えられる)`
@@ -102,7 +109,7 @@
 
 | 項目 | 既定 | 内容 |
 |---|---|---|
-| 仕様書のフォルダ | `仕様書MDファイル` | 1行に1つ。vault からのパス。この下の md で §8 がある物を対象にする |
+| 仕様書のフォルダ | 空(未設定) | 1行に1つ。vault からのパス。この下の md で §8 がある物を対象にする。未設定(空)だとどのノートも対象にならない。例: Specs や 仕様書 |
 | 除くパス | 空 | 1行に1つ。フォルダかファイル。Foo は Foo/ の下だけに効く |
 | 欄にしない言及 | `...` と `…` | 1行に1つ。インラインコードの中でこの中身の欄は欄にしない。BlockerBoard と同じ値にする |
 | 表のセルの改行 | `<br>` | 表のセルに入れる値の改行をこの文字にする(例: `<br>` か、前後に空白を付けた `/`) |
@@ -126,9 +133,10 @@
 
 ## 動作確認の状況
 
-- 版 0.1.0。Windows の Obsidian 1.14.4 で動作を確認(フォームの表示、1 つの欄に入れて確定 → 確認の窓 → ファイルはその 1 行だけが変わる → 「直前の書き込みを取り消す」で書く前とバイト単位で同じに戻る)
+- 版 0.1.1。Windows の Obsidian 1.14.4 で動作を確認(フォームの表示、1 つの欄に入れて確定 → 確認の窓 → ファイルはその 1 行だけが変わる → 「直前の書き込みを取り消す」で書く前とバイト単位で同じに戻る)
 - iPhone・Android の実機は未確認(モバイル表示のエミュレーションで読み込みと表示まで確認)
 - まだ確かめていない事: 打ちかけの文字がある編集画面を開いたまま書いたときの動き、表の中の `<br>` の見え方、モバイルで「控えの全文をコピー」が働くか。確認の窓を出している間に本文が変わったら書かないこと・改行が CRLF のノートは、テストでは確かめましたが Obsidian の画面では未確認です。
+- フォルダが未設定のときにフォームに案内が出ること(0.1.1 で足した)は、Obsidian の画面でも確かめました。
 - 初めて使うときは、写しの vault か、消えても困らないノートで 1 度動きを見てください。
 
 ## 分かっている限界
@@ -160,7 +168,8 @@ MIT。[LICENSE](LICENSE) を見てください。
 
 **Placeholder Form** fills the placeholders (`{{…}}`) in section 8 of a spec note from a form in the right sidebar. **It modifies your notes.**
 
-- It expects notes under a configured folder (default `仕様書MDファイル`) that have a `## 8. …` section, with placeholders written as `{{NAME}}` under `### 8.1 …` subsections. The section number 8 and the `{{…}}` shape are fixed.
+- First-time setup: the spec folder (「仕様書のフォルダ」) is empty by default. Set it in Settings → Placeholder Form (e.g. `Specs`). Until then no note is a target, nothing is read or written (undo of earlier writes still works), and the form says so.
+- It expects notes under that folder that have a `## 8. …` section, with placeholders written as `{{NAME}}` under `### 8.1 …` subsections. The section number 8 and the `{{…}}` shape are fixed.
 - It replaces only the placeholder text inside section 8 with the value you entered. Placeholders outside section 8, other lines, properties and other notes are never written.
 - Before writing it always shows a confirmation dialog with the before/after lines, re-reads the note, and refuses to write if the note changed or if the replacement would alter other placeholders, headings or code fences.
 - Before each write, the full text of the note is saved as a backup in the plugin's `data.json` (default: last 20 writes; full text each, no size cap, so `data.json` grows with note size × count).

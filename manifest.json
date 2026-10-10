@@ -1,7 +1,7 @@
 {
 	"id": "placeholder-form",
 	"name": "Placeholder Form",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"minAppVersion": "1.14.4",
 	"description": "Fill the placeholders in section 8 of a spec note with a form. Confirms, keeps a backup, and can undo.",
 	"author": "takosasi-dev",
