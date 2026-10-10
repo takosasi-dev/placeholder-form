@@ -1,0 +1,29 @@
+/* Placeholder Form のフォーム・確認画面・控え(§9.4・§9.6)。色は Obsidian のテーマの変数だけを使う。 */
+.pf-panel { font-size: var(--font-ui-small); }
+.pf-path { color: var(--text-muted); overflow-wrap: anywhere; margin-bottom: var(--size-4-1); }
+.pf-summary { font-weight: var(--font-semibold); margin-bottom: var(--size-4-2); }
+.pf-note, .pf-meta, .pf-context { color: var(--text-muted); overflow-wrap: anywhere; }
+.pf-warn, .pf-reason { color: var(--text-error); overflow-wrap: anywhere; }
+.pf-sub > summary { font-weight: var(--font-semibold); cursor: pointer; padding: var(--size-4-1) 0; }
+.pf-slot { margin: var(--size-4-2) 0 var(--size-4-3) var(--size-4-3); }
+.pf-slot-head { display: flex; flex-wrap: wrap; gap: var(--size-4-2); align-items: baseline; }
+.pf-name { cursor: pointer; font-family: var(--font-monospace); overflow-wrap: anywhere; }
+.pf-tag {
+	font-size: var(--font-ui-smaller);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s);
+	padding: 0 4px;
+}
+.pf-input { width: 100%; resize: vertical; font-family: var(--font-monospace); }
+.pf-all { display: block; }
+.pf-buttons { display: flex; flex-wrap: wrap; gap: var(--size-4-2); margin: var(--size-4-2) 0; }
+.pf-record { display: flex; flex-wrap: wrap; gap: var(--size-4-2); align-items: center; margin: var(--size-4-1) 0; }
+.pf-change { margin: var(--size-4-2) 0; }
+.pf-change-head { font-weight: var(--font-semibold); }
+.pf-change-rows, .pf-backup {
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+	font-family: var(--font-monospace);
+	font-size: var(--font-ui-small);
+}
+.pf-backup { max-height: 40vh; overflow: auto; border: 1px solid var(--background-modifier-border); padding: var(--size-4-2); }
